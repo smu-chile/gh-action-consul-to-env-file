@@ -1,0 +1,35 @@
+name: Create Prerequisites for ansible cluster creation
+author: Eduardo Mandry <eduardo.mandry@amaris.com>
+branding:
+  icon: upload-cloud
+  color: orange
+description: Read Consul KV DB and create files needed for ansible to create an AWS EKS cluster
+inputs:
+  consul_address:
+    description: Consul Name server
+    required: true
+  consul_token:
+    description: Consul HTTP Token for connection
+    required: true
+  base_path:
+    description: Prefix for reading data
+    required: true
+  excluded_keys:
+    description: Exclusions based on key names
+    required: true
+  consul_port: 
+    description: Consul connection port
+    default: "443"
+    required: true
+  consul_use_ssl:
+    description: Use HTTPS for connection
+    default: "true"
+    required: false
+  env_filename:
+    description: Filename for storing env file for ansible
+    default: ".env_file"
+    required: false
+
+runs:
+  using: docker
+  image: Dockerfile

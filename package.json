@@ -1,0 +1,27 @@
+{
+  "name": "drone-consul",
+  "version": "0.1.0",
+  "main": "src/index.js",
+  "author": "Javier Vera <javier.iosdesign@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "bdd": "cucumber.js test/functional --format progress-bar",
+    "coverage": "nyc mocha test/unit --recursive",
+    "lint": "eslint .",
+    "nsp": "nsp check",
+    "pkg": "pkg -c package.json --output ./release/drone-consul src/index.js",
+    "start": "node .",
+    "test": "jest"
+  },
+  "dependencies": {
+    "consul": "^0.30.0",
+    "got": "^8.2.0",
+    "lodash": "^4.17.5",
+    "winston": "^2.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.17.1",
+    "eslint-config-loopback": "^8.0.0",
+    "pkg": "^4.2.5"
+  }
+}

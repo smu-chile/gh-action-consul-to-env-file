@@ -1,0 +1,19 @@
+name: Test
+on: [push,workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Create filenames
+      uses: ./
+      with:
+        consul_address: "consul.smu-labs.cl"
+        consul_token: ${{ secrets.CONSUL_HTTP_TOKEN }}
+        base_path: "polymathes/infrastructure/terraform-aws-eks-frontend/prod"
+        excluded_keys: 'external-dns-deployment'
+        consul_port: 443
+        consul_use_ssl: true
+        env_filename: ".env_file" 
