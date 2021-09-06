@@ -1,7 +1,11 @@
-# Ansible Prerequisites
+# Github action, reads KV from consul and write envfile, to be imported with source command
 
 This Action allows you to create the files need for the ansible run
 
+## File example
+```
+export FOO='BAR'
+```
 ## Parameters
 | Parameter | Type | Default | Description |
 |-----------|------|---------|-------------|
@@ -17,7 +21,7 @@ This Action allows you to create the files need for the ansible run
 ```yaml
 name: Ansible usage
 env:
-    basepath: "polymathes/infrastructure/terraform-aws-eks-frontend"
+    basepath: "polymathes/infrastructure/terraform-aws-eks-example"
 jobs:
   BuildClusterAnsible:
     - name: Checkout ansible prerequisites action repo
@@ -34,7 +38,7 @@ jobs:
         consul_address: "consul.smu-labs.cl"
         consul_token: ${{ secrets.CONSUL_HTTP_TOKEN }}
         base_path: "${{ env.basepath }}/${{needs.ConfigureVars.outputs.environment}}"
-        excluded_keys: 'terraform-state,id-rsa,id-rsa-pub,sealed-secret-key,sealed-secret-certificate,ssh-deploy-public-key,ssh-deploy-private-key,config-map-aws-auth,kubeconfig,public-key,external-dns-deployment,private-subnets,public-subnets'
+        excluded_keys: 'external-dns-deployment'
         consul_port: 443
         consul_use_ssl: true
         env_filename: ".env_file" 

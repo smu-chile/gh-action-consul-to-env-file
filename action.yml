@@ -1,4 +1,4 @@
-name: Create Prerequisites for ansible cluster creation
+name: Create env file from consul
 author: Eduardo Mandry <eduardo.mandry@amaris.com>
 branding:
   icon: upload-cloud
