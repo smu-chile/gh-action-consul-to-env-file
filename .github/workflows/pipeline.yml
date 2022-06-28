@@ -29,6 +29,10 @@ jobs:
           pcc_pass: ${{ secrets.PCC_PASS }}
           image_name: ${{ env.IMAGE_NAME }}
 
+  Consul-Template:
+    name: Consul-Template
+    runs-on: ubuntu-latest
+    steps:
       - name: Create filenames
         uses: smu-chile/gh-action-consul-to-env-file@v1.0.0
         with:
