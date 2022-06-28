@@ -1,0 +1,30 @@
+name: Deployment Pipeline
+
+on:
+  push:
+    branches: [develop, staging, master]
+  pull_request: 
+    branches: [develop, staging, master]
+    types: [opened, synchronize]
+  workflow_call: 
+    
+jobs:
+
+  Security-Vulnerabilities-Scan:
+    env:
+      IMAGE_NAME: ${{ github.repository }}:temp-${{ github.run_number }}
+    name: Security-Vulnerabilities-Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: Build the image
+        run: docker build -t $IMAGE_NAME .
+
+      - name: Prisma Cloud image scan
+        id: scan
+        uses: PaloAltoNetworks/prisma-cloud-scan@v1
+        with:
+          pcc_console_url: ${{ secrets.PCC_CONSOLE_URL }}
+          pcc_user: ${{ secrets.PCC_USER }}
+          pcc_pass: ${{ secrets.PCC_PASS }}
+          image_name: ${{ env.IMAGE_NAME }}
