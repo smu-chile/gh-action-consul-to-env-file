@@ -1,4 +1,4 @@
-name: Create env file from consul
+name: Consul-Template for Hashicorp Consul
 author: Cesar Vergara <cvergarae@smu.cl>
 branding:
   icon: upload-cloud
