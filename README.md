@@ -25,7 +25,7 @@ env:
 jobs:
   BuildClusterAnsible:
     - name: Create filenames
-      uses: ./.github/actions/gh-action-consul-to-env-file
+      uses: smu-chile/gh-action-consul-to-env-file@v1.0.0
       with:
         consul_address: ""
         consul_token: ${{ secrets.CONSUL_HTTP_TOKEN }}
