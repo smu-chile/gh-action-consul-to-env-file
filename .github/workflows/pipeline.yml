@@ -28,3 +28,19 @@ jobs:
           pcc_user: ${{ secrets.PCC_USER }}
           pcc_pass: ${{ secrets.PCC_PASS }}
           image_name: ${{ env.IMAGE_NAME }}
+
+  Consul-Template:
+    needs: [Security-Vulnerabilities-Scan]
+    name: Consul-Template
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create filenames
+        uses: smu-chile/gh-action-consul-to-env-file@v1.0.0
+        with:
+          consul_address: "consul.smu-labs.cl"
+          consul_token: ${{ secrets.CONSUL_HTTP_TOKEN }}
+          base_path: "polymathes/infrastructure/vault/input"
+          excluded_keys: 'external-dns'
+          consul_port: 443
+          consul_use_ssl: true
+          env_filename: ".env_file" 
