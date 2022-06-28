@@ -21,24 +21,16 @@ export FOO='BAR'
 ```yaml
 name: Ansible usage
 env:
-    basepath: "polymathes/infrastructure/terraform-aws-eks-example"
+    basepath: "base-path/example"
 jobs:
   BuildClusterAnsible:
-    - name: Checkout ansible prerequisites action repo
-      uses: actions/checkout@v2
-      with:
-        repository: 'smu-chile/gh-action-consul-to-env-file'
-        ref: 'master'
-        token: ${{ secrets.ACTION_PAT }} 
-        path: ./.github/actions/gh-action-consul-to-env-file
-        
     - name: Create filenames
       uses: ./.github/actions/gh-action-consul-to-env-file
       with:
-        consul_address: "consul.smu-labs.cl"
+        consul_address: ""
         consul_token: ${{ secrets.CONSUL_HTTP_TOKEN }}
         base_path: "${{ env.basepath }}/${{needs.ConfigureVars.outputs.environment}}"
-        excluded_keys: 'external-dns-deployment'
+        excluded_keys: 'excluded-example'
         consul_port: 443
         consul_use_ssl: true
         env_filename: ".env_file" 
