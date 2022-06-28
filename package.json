@@ -17,6 +17,7 @@
     "consul": "^0.30.0",
     "got": "^8.2.0",
     "lodash": "^4.17.5",
+    "simple-get": "^4.0.1",
     "winston": "^2.4.0"
   },
   "devDependencies": {
