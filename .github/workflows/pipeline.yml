@@ -30,7 +30,6 @@ jobs:
           image_name: ${{ env.IMAGE_NAME }}
 
   Consul-Template:
-    needs: [Security-Vulnerabilities-Scan]
     name: Consul-Template
     runs-on: ubuntu-latest
     steps:
