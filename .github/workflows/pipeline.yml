@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create filenames
-        uses: smu-chile/gh-action-consul-to-env-file@v1.0.0
+        uses: smu-chile/gh-action-consul-to-env-file@v1.0.2
         with:
           consul_address: "consul.smu-labs.cl"
           consul_token: ${{ secrets.CONSUL_HTTP_TOKEN }}
